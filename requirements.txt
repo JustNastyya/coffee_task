@@ -1,0 +1,9 @@
+PyQt5==5.15.1
+PyQt5-sip==12.8.1
+pyqt5-tools==5.15.1.1.7.2
+pyqtgraph==0.11.0
+QtPy==1.9.0
+requests==2.24.0
+requests-oauthlib==1.3.0
+SQLAlchemy @ file:///C:/ci/sqlalchemy_1593445271541/work
+sqlparse @ file:///home/conda/feedstock_root/build_artifacts/sqlparse_1602142927465/work
