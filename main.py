@@ -1,9 +1,9 @@
 import sqlite3
 import sys
 
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem
+from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QApplication
+from main_ui import Ui_Main
+from addEditCoffeeForm_ui import Coffee_ui
 
 COLUMS = ['id', 'name',
     'bake_state', 'is_milled',
@@ -11,13 +11,13 @@ COLUMS = ['id', 'name',
     'package']
 
 
-class DBSample(QMainWindow):
+class DBSample(QMainWindow, Ui_Main, Coffee_ui):
     def __init__(self):
         super().__init__()
         self.main_window()
     
     def main_window(self):
-        uic.loadUi('main.ui', self)
+        self.setupUi_main(self)
         self.connection = sqlite3.connect("coffee.sqlite")
         self.select_data()
         self.change_chosen_btn.clicked.connect(self.change_data_window)
@@ -48,7 +48,7 @@ class DBSample(QMainWindow):
         self.connection = sqlite3.connect("coffee.sqlite")
         data = self.tableWidget.selectedItems()[0].text()
         self.ind = self.tableWidget.selectedIndexes()[0]
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi_coffee(self)
         self.save.clicked.connect(self.save_to_db)
         self.new_data.setPlainText(str(data))
     
@@ -68,8 +68,6 @@ class DBSample(QMainWindow):
         self.connection.commit()
         self.connection.close()
         self.main_window()
-
-
 
 
 if __name__ == '__main__':
